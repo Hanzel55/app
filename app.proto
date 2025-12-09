@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package agnt;
+
+// Bidirectional streaming service
+service AgntService {
+    rpc Connect(stream AgentMessage) returns (stream ServerMessage);
+}
+
+// Messages sent from Agent → Server
+message AgentMessage {
+    string agent_id = 1;       // sent once on initial connection
+    string heartbeat = 2;      // sent periodically to keep connection alive
+    TableList table_names = 3;      // list of table names (query result)
+    string message = 4;        // optional: query result as string or error messages
+    QueryResult query_result = 5; 
+}
+
+// Messages sent from Server → Agent
+message ServerMessage {
+    string database = 1;       // database type: "postgres", "mysql", etc.
+    string query = 2;          // SQL query to execute
+    string request_id = 3;   // unique ID assigned by server
+}
+
+// Used when query result is a list of table names
+message TableList {
+    repeated string names = 1;
+}
+
+message QueryResult {
+    string json = 1;
+    string request_id = 2;    // echo back the same ID from ServerMessage
+}
+
+
