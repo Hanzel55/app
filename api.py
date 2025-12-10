@@ -17,5 +17,6 @@ def root():
 @app.post("/send-command")
 async def send_command_api(request: CommandRequest):
     result = await send_command(request.agentid, request.database, request.query)
+
     return {"status": "success", "message": result}
 

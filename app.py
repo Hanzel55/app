@@ -141,6 +141,5 @@ async def start_grpc_server():
     app_pb2_grpc.add_AgntServiceServicer_to_server(AgntService(), server)
     server.add_insecure_port("[::]:50051")
     await server.start()
-
     print("gRPC server started on port 50051")
     return server
