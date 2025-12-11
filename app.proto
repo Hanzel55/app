@@ -16,11 +16,13 @@ message AgentMessage {
     QueryResult query_result = 5; 
 }
 
+
 // Messages sent from Server → Agent
 message ServerMessage {
     string database = 1;       // database type: "postgres", "mysql", etc.
     string query = 2;          // SQL query to execute
     string request_id = 3;   // unique ID assigned by server
+    string tbl_name = 4;
 }
 
 // Used when query result is a list of table names
@@ -31,6 +33,7 @@ message TableList {
 message QueryResult {
     string json = 1;
     string request_id = 2;    // echo back the same ID from ServerMessage
+    string tbl_meta_data = 3;
 }
 
 

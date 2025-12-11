@@ -9,6 +9,7 @@ class CommandRequest(BaseModel):
     agentid: str
     database: str
     query: str
+    tbl_name: str
 
 @app.get("/")
 def root():
@@ -16,7 +17,7 @@ def root():
 
 @app.post("/send-command")
 async def send_command_api(request: CommandRequest):
-    result = await send_command(request.agentid, request.database, request.query)
+    result = await send_command(request.agentid, request.database, request.query, request.tbl_name)
 
     return {"status": "success", "message": result}
 

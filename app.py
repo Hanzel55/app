@@ -1,5 +1,6 @@
 # app.py
 import asyncio
+from email import message
 import grpc
 import json
 import uuid
@@ -63,13 +64,15 @@ class AgntService(app_pb2_grpc.AgntServiceServicer):
                     req_id = msg.query_result.request_id
                     result_data = json.loads(msg.query_result.json)
                     print(f"[SERVER] Query result from {agent_id}: {result_data}")
+                    message = msg.message
+                    meta_data = msg.query_result.tbl_meta_data
 
                     key = (agent_id, req_id)
 
                     # Fulfill the pending future
                     future = pending_results.pop(key, None)
                     if future:
-                        future.set_result(result_data)
+                        future.set_result({"result":result_data,"message":message,"meta_data":json.loads(meta_data)})
 
                     continue
 
@@ -99,7 +102,7 @@ class AgntService(app_pb2_grpc.AgntServiceServicer):
 # --------------------------------------------------
 # PUBLIC FUNCTION CALLED BY FASTAPI
 # --------------------------------------------------
-async def send_command(agent_id, database, query):
+async def send_command(agent_id, database, query, tbl_name):
     """
     Sends a command to an agent and waits for its response.
     """
@@ -120,7 +123,8 @@ async def send_command(agent_id, database, query):
     msg = app_pb2.ServerMessage(
         database=database,
         query=query,
-        request_id=request_id
+        request_id=request_id,
+        tbl_name=tbl_name
     )
 
     print(f"[SERVER] Sending command to {agent_id}: {database} / {query} / req_id={request_id}")

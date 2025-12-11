@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tapp.proto\x12\x04\x61gnt\"\x93\x01\n\x0c\x41gentMessage\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\theartbeat\x18\x02 \x01(\t\x12$\n\x0btable_names\x18\x03 \x01(\x0b\x32\x0f.agnt.TableList\x12\x0f\n\x07message\x18\x04 \x01(\t\x12\'\n\x0cquery_result\x18\x05 \x01(\x0b\x32\x11.agnt.QueryResult\"D\n\rServerMessage\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\x12\x12\n\nrequest_id\x18\x03 \x01(\t\"\x1a\n\tTableList\x12\r\n\x05names\x18\x01 \x03(\t\"/\n\x0bQueryResult\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t2E\n\x0b\x41gntService\x12\x36\n\x07\x43onnect\x12\x12.agnt.AgentMessage\x1a\x13.agnt.ServerMessage(\x01\x30\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tapp.proto\x12\x04\x61gnt\"\x93\x01\n\x0c\x41gentMessage\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\theartbeat\x18\x02 \x01(\t\x12$\n\x0btable_names\x18\x03 \x01(\x0b\x32\x0f.agnt.TableList\x12\x0f\n\x07message\x18\x04 \x01(\t\x12\'\n\x0cquery_result\x18\x05 \x01(\x0b\x32\x11.agnt.QueryResult\"V\n\rServerMessage\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\x12\x12\n\nrequest_id\x18\x03 \x01(\t\x12\x10\n\x08tbl_name\x18\x04 \x01(\t\"\x1a\n\tTableList\x12\r\n\x05names\x18\x01 \x03(\t\"F\n\x0bQueryResult\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x15\n\rtbl_meta_data\x18\x03 \x01(\t2E\n\x0b\x41gntService\x12\x36\n\x07\x43onnect\x12\x12.agnt.AgentMessage\x1a\x13.agnt.ServerMessage(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,11 +34,11 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_AGENTMESSAGE']._serialized_start=20
   _globals['_AGENTMESSAGE']._serialized_end=167
   _globals['_SERVERMESSAGE']._serialized_start=169
-  _globals['_SERVERMESSAGE']._serialized_end=237
-  _globals['_TABLELIST']._serialized_start=239
-  _globals['_TABLELIST']._serialized_end=265
-  _globals['_QUERYRESULT']._serialized_start=267
-  _globals['_QUERYRESULT']._serialized_end=314
-  _globals['_AGNTSERVICE']._serialized_start=316
-  _globals['_AGNTSERVICE']._serialized_end=385
+  _globals['_SERVERMESSAGE']._serialized_end=255
+  _globals['_TABLELIST']._serialized_start=257
+  _globals['_TABLELIST']._serialized_end=283
+  _globals['_QUERYRESULT']._serialized_start=285
+  _globals['_QUERYRESULT']._serialized_end=355
+  _globals['_AGNTSERVICE']._serialized_start=357
+  _globals['_AGNTSERVICE']._serialized_end=426
 # @@protoc_insertion_point(module_scope)
