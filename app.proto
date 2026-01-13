@@ -7,6 +7,12 @@ service AgntService {
     rpc Connect(stream AgentMessage) returns (stream ServerMessage);
 }
 
+
+// DJANGO / CLIENT SERVICE
+service ClientService {
+    rpc SendCommand (CommandRequest) returns (CommandResponse);
+}
+
 // Messages sent from Agent → Server
 message AgentMessage {
     string agent_id = 1;       // sent once on initial connection
@@ -14,6 +20,7 @@ message AgentMessage {
     TableList table_names = 3;      // list of table names (query result)
     string message = 4;        // optional: query result as string or error messages
     QueryResult query_result = 5; 
+    string worker_id = 6;
 }
 
 
@@ -23,6 +30,12 @@ message ServerMessage {
     string query = 2;          // SQL query to execute
     string request_id = 3;   // unique ID assigned by server
     string tbl_name = 4;
+    string host = 5;
+    string db_name = 6;
+    string schema =7;
+    string user = 8;
+    string port = 9;
+    string password = 10; 
 }
 
 // Used when query result is a list of table names
@@ -37,3 +50,23 @@ message QueryResult {
 }
 
 
+// ---------- Django → Server ----------
+message CommandRequest {
+    string agent_id = 1;
+    string database = 2;
+    string query = 3;
+    string tbl_name = 4;
+    string host = 5;
+    string db_name = 6;
+    string schema =7;
+    string user = 8;
+    string port = 9;
+    string password = 10; 
+}
+
+// ---------- Server → Django ----------
+message CommandResponse {
+    string json = 1;
+    string message = 2;
+    string meta_data = 3;
+}

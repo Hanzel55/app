@@ -98,3 +98,78 @@ class AgntService(object):
             timeout,
             metadata,
             _registered_method=True)
+
+
+class ClientServiceStub(object):
+    """DJANGO / CLIENT SERVICE
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.SendCommand = channel.unary_unary(
+                '/agnt.ClientService/SendCommand',
+                request_serializer=app__pb2.CommandRequest.SerializeToString,
+                response_deserializer=app__pb2.CommandResponse.FromString,
+                _registered_method=True)
+
+
+class ClientServiceServicer(object):
+    """DJANGO / CLIENT SERVICE
+    """
+
+    def SendCommand(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ClientServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'SendCommand': grpc.unary_unary_rpc_method_handler(
+                    servicer.SendCommand,
+                    request_deserializer=app__pb2.CommandRequest.FromString,
+                    response_serializer=app__pb2.CommandResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'agnt.ClientService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+    server.add_registered_method_handlers('agnt.ClientService', rpc_method_handlers)
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ClientService(object):
+    """DJANGO / CLIENT SERVICE
+    """
+
+    @staticmethod
+    def SendCommand(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/agnt.ClientService/SendCommand',
+            app__pb2.CommandRequest.SerializeToString,
+            app__pb2.CommandResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
