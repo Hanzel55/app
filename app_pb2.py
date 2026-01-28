@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tapp.proto\x12\x04\x61gnt\"\xa6\x01\n\x0c\x41gentMessage\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\theartbeat\x18\x02 \x01(\t\x12$\n\x0btable_names\x18\x03 \x01(\x0b\x32\x0f.agnt.TableList\x12\x0f\n\x07message\x18\x04 \x01(\t\x12\'\n\x0cquery_result\x18\x05 \x01(\x0b\x32\x11.agnt.QueryResult\x12\x11\n\tworker_id\x18\x06 \x01(\t\"\xb3\x01\n\rServerMessage\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\x12\x12\n\nrequest_id\x18\x03 \x01(\t\x12\x10\n\x08tbl_name\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0f\n\x07\x64\x62_name\x18\x06 \x01(\t\x12\x0e\n\x06schema\x18\x07 \x01(\t\x12\x0c\n\x04user\x18\x08 \x01(\t\x12\x0c\n\x04port\x18\t \x01(\t\x12\x10\n\x08password\x18\n \x01(\t\"\x1a\n\tTableList\x12\r\n\x05names\x18\x01 \x03(\t\"F\n\x0bQueryResult\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x15\n\rtbl_meta_data\x18\x03 \x01(\t\"\xb2\x01\n\x0e\x43ommandRequest\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x02 \x01(\t\x12\r\n\x05query\x18\x03 \x01(\t\x12\x10\n\x08tbl_name\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0f\n\x07\x64\x62_name\x18\x06 \x01(\t\x12\x0e\n\x06schema\x18\x07 \x01(\t\x12\x0c\n\x04user\x18\x08 \x01(\t\x12\x0c\n\x04port\x18\t \x01(\t\x12\x10\n\x08password\x18\n \x01(\t\"C\n\x0f\x43ommandResponse\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x11\n\tmeta_data\x18\x03 \x01(\t2E\n\x0b\x41gntService\x12\x36\n\x07\x43onnect\x12\x12.agnt.AgentMessage\x1a\x13.agnt.ServerMessage(\x01\x30\x01\x32K\n\rClientService\x12:\n\x0bSendCommand\x12\x14.agnt.CommandRequest\x1a\x15.agnt.CommandResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\tapp.proto\x12\x04\x61gnt\"\xa6\x01\n\x0c\x41gentMessage\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x11\n\theartbeat\x18\x02 \x01(\t\x12$\n\x0btable_names\x18\x03 \x01(\x0b\x32\x0f.agnt.TableList\x12\x0f\n\x07message\x18\x04 \x01(\t\x12\'\n\x0cquery_result\x18\x05 \x01(\x0b\x32\x11.agnt.QueryResult\x12\x11\n\tworker_id\x18\x06 \x01(\t\"\x7f\n\rServerMessage\x12\x10\n\x08\x64\x61tabase\x18\x01 \x01(\t\x12\r\n\x05query\x18\x02 \x01(\t\x12\x12\n\nrequest_id\x18\x03 \x01(\t\x12\x10\n\x08tbl_name\x18\x04 \x01(\t\x12\'\n\tdb_config\x18\x05 \x01(\x0b\x32\x14.agnt.DatabaseConfig\"l\n\x0e\x44\x61tabaseConfig\x12*\n\tsqlserver\x18\x01 \x01(\x0b\x32\x15.agnt.SqlServerConfigH\x00\x12$\n\x06oracle\x18\x02 \x01(\x0b\x32\x12.agnt.OracleConfigH\x00\x42\x08\n\x06\x63onfig\"n\n\x0fSqlServerConfig\x12\x0c\n\x04host\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\t\x12\x0f\n\x07\x64\x62_name\x18\x03 \x01(\t\x12\x0e\n\x06schema\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x10\n\x08password\x18\x06 \x01(\t\"\x91\x01\n\x0cOracleConfig\x12\x0c\n\x04user\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\x12\x0c\n\x04host\x18\x03 \x01(\t\x12\x0c\n\x04port\x18\x04 \x01(\t\x12\x12\n\nuse_wallet\x18\x05 \x01(\x08\x12\x14\n\x0cservice_name\x18\x06 \x01(\t\x12\x0e\n\x06schema\x18\x07 \x01(\t\x12\x0b\n\x03\x64sn\x18\x08 \x01(\t\"\x1a\n\tTableList\x12\r\n\x05names\x18\x01 \x03(\t\"F\n\x0bQueryResult\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x15\n\rtbl_meta_data\x18\x03 \x01(\t\"~\n\x0e\x43ommandRequest\x12\x10\n\x08\x61gent_id\x18\x01 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x02 \x01(\t\x12\r\n\x05query\x18\x03 \x01(\t\x12\x10\n\x08tbl_name\x18\x04 \x01(\t\x12\'\n\tdb_config\x18\x05 \x01(\x0b\x32\x14.agnt.DatabaseConfig\"C\n\x0f\x43ommandResponse\x12\x0c\n\x04json\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x11\n\tmeta_data\x18\x03 \x01(\t2E\n\x0b\x41gntService\x12\x36\n\x07\x43onnect\x12\x12.agnt.AgentMessage\x1a\x13.agnt.ServerMessage(\x01\x30\x01\x32K\n\rClientService\x12:\n\x0bSendCommand\x12\x14.agnt.CommandRequest\x1a\x15.agnt.CommandResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,18 +33,24 @@ if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_AGENTMESSAGE']._serialized_start=20
   _globals['_AGENTMESSAGE']._serialized_end=186
-  _globals['_SERVERMESSAGE']._serialized_start=189
-  _globals['_SERVERMESSAGE']._serialized_end=368
-  _globals['_TABLELIST']._serialized_start=370
-  _globals['_TABLELIST']._serialized_end=396
-  _globals['_QUERYRESULT']._serialized_start=398
-  _globals['_QUERYRESULT']._serialized_end=468
-  _globals['_COMMANDREQUEST']._serialized_start=471
-  _globals['_COMMANDREQUEST']._serialized_end=649
-  _globals['_COMMANDRESPONSE']._serialized_start=651
-  _globals['_COMMANDRESPONSE']._serialized_end=718
-  _globals['_AGNTSERVICE']._serialized_start=720
-  _globals['_AGNTSERVICE']._serialized_end=789
-  _globals['_CLIENTSERVICE']._serialized_start=791
-  _globals['_CLIENTSERVICE']._serialized_end=866
+  _globals['_SERVERMESSAGE']._serialized_start=188
+  _globals['_SERVERMESSAGE']._serialized_end=315
+  _globals['_DATABASECONFIG']._serialized_start=317
+  _globals['_DATABASECONFIG']._serialized_end=425
+  _globals['_SQLSERVERCONFIG']._serialized_start=427
+  _globals['_SQLSERVERCONFIG']._serialized_end=537
+  _globals['_ORACLECONFIG']._serialized_start=540
+  _globals['_ORACLECONFIG']._serialized_end=685
+  _globals['_TABLELIST']._serialized_start=687
+  _globals['_TABLELIST']._serialized_end=713
+  _globals['_QUERYRESULT']._serialized_start=715
+  _globals['_QUERYRESULT']._serialized_end=785
+  _globals['_COMMANDREQUEST']._serialized_start=787
+  _globals['_COMMANDREQUEST']._serialized_end=913
+  _globals['_COMMANDRESPONSE']._serialized_start=915
+  _globals['_COMMANDRESPONSE']._serialized_end=982
+  _globals['_AGNTSERVICE']._serialized_start=984
+  _globals['_AGNTSERVICE']._serialized_end=1053
+  _globals['_CLIENTSERVICE']._serialized_start=1055
+  _globals['_CLIENTSERVICE']._serialized_end=1130
 # @@protoc_insertion_point(module_scope)

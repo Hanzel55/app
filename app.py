@@ -24,9 +24,8 @@ worker_load = {}
 pending_results = {}
 
 
-# --------------------------------------------------
+
 # HELPER: Pick least-busy worker
-# --------------------------------------------------
 def pick_least_busy_worker(agent_id):
     workers = worker_load.get(agent_id, {})
     if not workers:
@@ -34,9 +33,7 @@ def pick_least_busy_worker(agent_id):
     return min(workers, key=lambda w: workers[w])
 
 
-# --------------------------------------------------
 # GRPC SERVICE IMPLEMENTATION
-# --------------------------------------------------
 class AgntService(app_pb2_grpc.AgntServiceServicer):
 
     async def Connect(self, request_iterator, context):
@@ -141,19 +138,14 @@ class AgntService(app_pb2_grpc.AgntServiceServicer):
     # ---------- DJANGO RPC ----------
     async def SendCommand(self, request, context):
         """
-        Called by Django via gRPC
+        Called by Django to this code via gRPC
         """
         result = await send_command(
             request.agent_id,
             request.database,
             request.query,
             request.tbl_name,
-            request.host,
-            request.db_name,
-            request.schema,
-            request.user,
-            request.port,
-            request.password
+            request.db_config
         )
 
         return app_pb2.CommandResponse(
@@ -162,12 +154,11 @@ class AgntService(app_pb2_grpc.AgntServiceServicer):
             meta_data=result["meta_data"],
         )
 
-# --------------------------------------------------
+
 # PUBLIC FUNCTION 
-# --------------------------------------------------
-async def send_command(agent_id, database, query, tbl_name, host, db_name, schema, user, port, password):
+async def send_command(agent_id, database, query, tbl_name, db_config):
     """
-    Sends DB query to the least-busy worker and waits for result.
+    Sends DB query to the least-busy worker and waits for result. (send to agent)
     """
 
     if agent_id not in agent_queues or not agent_queues[agent_id]:
@@ -188,12 +179,7 @@ async def send_command(agent_id, database, query, tbl_name, host, db_name, schem
         query=query,
         request_id=request_id,
         tbl_name=tbl_name,
-        host=host,
-        db_name=db_name,
-        schema=schema,
-        user=user,
-        port=port,
-        password=password
+        db_config=db_config
     )
 
     # 🔼 Increment worker load BEFORE sending

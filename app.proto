@@ -30,13 +30,39 @@ message ServerMessage {
     string query = 2;          // SQL query to execute
     string request_id = 3;   // unique ID assigned by server
     string tbl_name = 4;
-    string host = 5;
-    string db_name = 6;
-    string schema =7;
-    string user = 8;
-    string port = 9;
-    string password = 10; 
+    DatabaseConfig db_config = 5;
+
 }
+
+message DatabaseConfig {
+    oneof config {
+        SqlServerConfig sqlserver = 1;
+        OracleConfig oracle = 2;
+    }
+}
+
+/* ---------- SQL SERVER ---------- */
+message SqlServerConfig {
+    string host = 1;
+    string port = 2;
+    string db_name = 3;
+    string schema = 4;
+    string user = 5;
+    string password = 6;
+}
+
+/* ---------- ORACLE ---------- */
+message OracleConfig {
+    string user = 1;
+    string password = 2;
+    string host = 3;
+    string port =4;             // ezconnect / tns alias
+    bool use_wallet = 5;     // optional
+    string service_name = 6;
+    string schema = 7;
+    string dsn = 8; //used only in case of connecting with wallet
+}
+
 
 // Used when query result is a list of table names
 message TableList {
@@ -56,12 +82,7 @@ message CommandRequest {
     string database = 2;
     string query = 3;
     string tbl_name = 4;
-    string host = 5;
-    string db_name = 6;
-    string schema =7;
-    string user = 8;
-    string port = 9;
-    string password = 10; 
+    DatabaseConfig db_config = 5;
 }
 
 // ---------- Server → Django ----------
